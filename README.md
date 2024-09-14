@@ -1,3 +1,5 @@
+<img src="assets/favicon.svg" alt="Copilot for Vision Logo" height="64px" width="64px">
+
 #### Copilot for Vision 
 
 It is an open-source app designed to empower individuals with blindness by providing real-time insights into their surroundings through a live camera video feed—no need to snap static photos! Leveraging GPT-4o (Online on Cloud) and Phi3.5 Vision (Offline on Device) models, it functions seamlessly with or without internet connectivity. 
