@@ -16,7 +16,7 @@ html, body {
 
 .header {
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,13 +24,11 @@ html, body {
 }
 .title {
   font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 35px;
-  margin-top: 15px;
+  padding: 10px;
 }
 .description {
+  padding: 25px;
   font-size: 32px;
-  font-weight: bolder;
   font-family:'Courier New', Courier, monospace;
   color: red;
 }
@@ -45,7 +43,7 @@ html, body {
       grid-template-columns: repeat(1, 1fr);
   }
   .header {
-    height: 50vh;
+    height: auto;
   }
 }
 @media (min-width: 640px) {
@@ -53,7 +51,7 @@ html, body {
       grid-template-columns: repeat(2, 1fr);
   }
   .header {
-    height: 50vh;
+    height: auto;
   }
 }
 
