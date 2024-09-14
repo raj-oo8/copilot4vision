@@ -4,7 +4,6 @@ import { startCamera, stopCamera } from "./camera";
 import { scaleAndStackImagesAndGetBase64 } from "./imageStacker";
 import { makeGeminiRequest } from "./gemini";
 import { Speech } from "./speech";
-import { buildLanguageSelect } from "./dictationLanguages";
 
 const IMAGE_STACK_SIZE = 3;
 
@@ -18,29 +17,13 @@ let newMessagesWatcherInterval: number | null = null;
 let speech: Speech = new Speech();
 
 export function getChosenLanguage() {
-  return document.querySelector("#languageSelect")!.value;
-}
-
-function getSliderAIValue() {
-  return document
-    .querySelector(".toggle-slider")
-    ?.getAttribute("data-position") === "left"
-    ? "openai"
-    : "gemini";
+  // change language
+  return "en-IN";
 }
 
 function getApiKey() {
-  const providedApiKey = document.querySelector(
-    "input[type='password']#apiKey"
-  )!.value;
-
-  if (providedApiKey) {
-    return providedApiKey;
-  }
-
-  return getSliderAIValue() === "openai"
-    ? import.meta.env.VITE_OPENAI_KEY
-    : import.meta.env.VITE_GEMINI_KEY;
+  // change to openai/gemini
+  return import.meta.env.VITE_GEMINI_KEY;
 }
 
 function pushNewImageOnStack() {
@@ -68,8 +51,8 @@ function dictationEventHandler(message?: string) {
     unsentMessages = [];
 
     let aiFunction = null;
-    aiFunction =
-      getSliderAIValue() === "openai" ? makeOpenAIRequest : makeGeminiRequest;
+    // change to openai/gemini
+    aiFunction = makeGeminiRequest;
 
     aiFunction(textPrompt, base64, getApiKey(), speech).then(() => {
       // after speech
@@ -87,7 +70,6 @@ export function updatePromptOutput(
   if (!promptOutput) {
     return;
   }
-
   promptOutput.innerHTML += newMessage + (dontAddNewLine ? "" : "<br>");
   promptOutput.scrollTop = promptOutput.scrollHeight; // Auto-scroll to bottom
 }
@@ -101,7 +83,6 @@ function newMessagesWatcher() {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
-  buildLanguageSelect();
 
   document
     .querySelector("#startButton")!
@@ -136,15 +117,4 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.querySelector("#startButton")!.textContent = "Start";
       }
     });
-});
-
-document.querySelector(".toggle-switch").addEventListener("click", function () {
-  var slider = document.querySelector(".toggle-slider");
-  if (slider.getAttribute("data-position") === "right") {
-    slider.style.left = "0px";
-    slider.setAttribute("data-position", "left");
-  } else {
-    slider.style.left = "40px";
-    slider.setAttribute("data-position", "right");
-  }
 });

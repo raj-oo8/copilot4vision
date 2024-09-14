@@ -66,7 +66,7 @@ export async function makeOpenAIRequest(
 
   const stream = await openai.chat.completions.create({
     messages,
-    model: "gpt-4-vision-preview",
+    model: "gpt-4o-mini",
     max_tokens: 4096,
     temperature: 0,
     stream: true,
