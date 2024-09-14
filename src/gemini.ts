@@ -46,7 +46,7 @@ export async function makeGeminiRequest(
     const content = response.text();
 
     stopDictation();
-    updatePromptOutput(content);
+    updatePromptOutput("Copilot for Vision: " + content + "<br>");
     await speech.speak(content);
 
     return content;

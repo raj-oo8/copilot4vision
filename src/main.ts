@@ -41,7 +41,7 @@ function pushNewImageOnStack() {
 function dictationEventHandler(message?: string) {
   if (message) {
     unsentMessages.push(message);
-    updatePromptOutput(message);
+    updatePromptOutput("User: " + message);
   }
 
   if (!openAiCallInTransit) {
