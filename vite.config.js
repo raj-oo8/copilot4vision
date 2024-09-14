@@ -1,7 +1,9 @@
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  // https://stackoverflow.com/a/75953479
+  build: {
+    outDir: 'build', // Ensure the output directory is set to 'build'
+  },
   optimizeDeps: {
     exclude: ["@google/generative-ai"],
   },

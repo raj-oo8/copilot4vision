@@ -42,6 +42,20 @@ jobs:
           TOKEN=$(az staticwebapp secrets list --name ${{ env.STATIC_WEB_APP_NAME }} --resource-group ${{ env.RESOURCE_GROUP_NAME }} --query "properties.apiKey" -o tsv)
           echo "STATIC_WEB_APP_TOKEN=$TOKEN" >> $GITHUB_ENV
 
+      # Install Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Build project
+      - name: Build project
+        run: npm run build
+
       # Deploy to Azure Static Web Apps
       - name: Deploy
         id: builddeploy
