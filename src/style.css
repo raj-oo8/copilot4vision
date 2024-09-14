@@ -45,20 +45,11 @@ html, body {
       height: auto;
   }
 }
-@media (min-width: 640px) {
-  .content-tiles {
-      grid-template-columns: repeat(2, 1fr);
-  }
-  .header, .content {
-      height: auto;
-  }
-}
 
 .content-tile {
   border-radius: var(--border-radius);
   background-color: var(--surface-color);
   margin: 1%;
-  padding: 20%;
   text-align: center;
   position: relative;
 }
@@ -68,13 +59,17 @@ html, body {
 
 .content-tile canvas,
 .content-tile video {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: var(--border-radius);
+}
+
+.content-tile-body
+{
+  padding: 20px;
 }
 
 .record-button {
