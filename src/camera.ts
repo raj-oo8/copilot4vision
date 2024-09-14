@@ -6,7 +6,10 @@ export function startCamera() {
   navigator.mediaDevices
     .getUserMedia({
       audio: true,
-      video: true,
+      video: {
+        width: { ideal: 1280 }, // Request 1280 pixels width
+        height: { ideal: 720 },  // Request 720 pixels height
+      },
     })
     .then((stream) => {
       video.srcObject = stream;
